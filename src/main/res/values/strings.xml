@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Restra</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Authorization -->
+    <string name="parameter_auth">a2665f0923b4b497f2bb4e3017ec27df</string>
+    <string name="warning_no_internet">No Internet found. Please enable mobile data or wifi</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="search">Search</string>
+    <string name="list_property">List Property</string>
+    <string name="manage_property">Manage Property</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/list_property</item>
+        <item>@string/manage_property</item>
+    </string-array>
+
+    <!-- dashboard fragment -->
+    <string name="search_dashboard_fragment">Search</string>
+    <string name="search_text_dashboard_fragment">Search by area &amp; name</string>
+    <string name="list_restaurants">Restaurants</string>
+    <string name="list_restaurants_text">List all the restaurants</string>
+
+</resources>
