@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity  implements
         ActionBarCommon actionBarCommon = new ActionBarCommon(getSupportActionBar(), this)
                 .setCustomActionBar();
         actionBarCommon.getBackButtonLayout().setVisibility(View.GONE);
-        actionBarCommon.setTitleForActionBar("Search");
+        actionBarCommon.setTitleForActionBar("");
 
         drawerFragment = (FragmentDrawer) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_drawer);

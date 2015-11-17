@@ -20,6 +20,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/layout_fragmentDashboard_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -56,6 +57,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_fragmentDashboard_listRestaurant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

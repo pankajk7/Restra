@@ -27,6 +27,7 @@ public class Restaurant implements Serializable {
     String review_id;
     String menu_id;
     String pic_id;
+    String area_id;
 
     public class RestaurantList{
         public Restaurant[] getRestaurant() {
@@ -207,6 +208,12 @@ public class Restaurant implements Serializable {
         this.pic_id = pic_id;
     }
 
+    public String getArea_id() {
+        return area_id;
+    }
 
+    public void setArea_id(String pic_id) {
+        this.area_id = area_id;
+    }
 
 }

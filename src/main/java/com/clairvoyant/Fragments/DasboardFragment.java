@@ -1,15 +1,18 @@
 package com.clairvoyant.Fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.clairvoyant.Activities.SearchActivity;
 import com.clairvoyant.Utils.Constants;
 import com.clairvoyant.Utils.ResponseCode;
 import com.clairvoyant.WebServices.RestWebService;
@@ -27,6 +30,10 @@ public class DasboardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //VIEWS
+    LinearLayout searchLinearLayout;
+    LinearLayout listLinearLayout;
 
     // TODO: Rename and change types and number of parameters
     public static DasboardFragment newInstance(String param1, String param2) {
@@ -55,7 +62,30 @@ public class DasboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        init();
+        findViews(view);
+        listeners();
+        return view;
+    }
+
+    private void init(){
+
+    }
+
+    private void findViews(View view){
+        searchLinearLayout = (LinearLayout)view.findViewById(R.id.layout_fragmentDashboard_search);
+        listLinearLayout = (LinearLayout)view.findViewById(R.id.layout_fragmentDashboard_listRestaurant);
+    }
+
+    private void listeners(){
+        searchLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -65,22 +95,6 @@ public class DasboardFragment extends Fragment {
 //        }
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-//        mListener = null;
-    }
 
     private void callAPI(){
         new RestWebService(getActivity()) {

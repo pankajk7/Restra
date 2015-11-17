@@ -27,4 +27,7 @@
     <string name="list_restaurants">Restaurants</string>
     <string name="list_restaurants_text">List all the restaurants</string>
 
+    <!--Restauran Information-->
+    <string name="restaurant_info">Restaurant Info</string>
+    <string name="restaurant_location">Restaurant Location</string>
 </resources>
