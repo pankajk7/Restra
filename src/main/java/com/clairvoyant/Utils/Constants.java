@@ -10,6 +10,11 @@ public class Constants {
     public final static String SUFFIX_URL = "";
     public final static String URL_TAIL = ".json";
 
+    //Coludinary
+	public final static String CLOUDINARY_NAME = "restra";
+	public final static String CLOUDINARY_API_KEY = "751941358289462";
+	public final static String CLOUDINARY_API_SECRET = "ODdV0-zB_QrSm_qGDZI-kb_FmcA";
+
     //PARAMETER
     public final static String PARAMETER_AUTH = "X-Authorization";
 

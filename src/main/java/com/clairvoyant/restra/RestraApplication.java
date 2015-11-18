@@ -9,9 +9,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 
-/**
- * Created by Clairvoyant on 03-11-2015.
- */
 public class RestraApplication extends Application {
     private static RestraApplication sInstance;
     private RequestQueue mRequestQueue;

@@ -8,11 +8,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.clairvoyant.Utils.BackgroundNetwork;
+import com.clairvoyant.Utils.Constants;
 import com.clairvoyant.entities.Restaurant;
 import com.clairvoyant.restra.R;
+import com.clairvoyant.restra.RestraApplication;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SearchResultBaseAdapter extends BaseAdapter {
 
@@ -75,49 +82,58 @@ public class SearchResultBaseAdapter extends BaseAdapter {
 		holder.priceRangeTextView.setText(arrayList.get(position).getPhone());
 		holder.areaTextView.setText(arrayList.get(position).getArea());
 		holder.imageView.setImageResource(R.drawable.ic_launcher);
+
+//		if(position==0){
+			getImages("Breaking_Bad_title_card_nxixvd",holder.imageView);
+//		}
+
 		//getting only first image to show
 //		getImages(arrayList.get(position).getImages()[0].getCloudinary_image_id(), holder.imageView);
 		return convertView;
 	}
 
-//	private void getImages(final String id, final ImageView imageView) {
-//
-//		new BackgroundNetwork(context) {
-//			String url = "";
-//
-//			protected Void doInBackground(Void... params) {
-//				Map<String, String> config = new HashMap<String, String>();
-//				config.put("cloud_name", Constants.CLOUDINARY_NAME);
-//				config.put("api_key", Constants.CLOUDINARY_API_KEY);
-//				config.put("api_secret", Constants.CLOUDINARY_API_SECRET);
-//
-//				try {
-//					Cloudinary cloudinary = new Cloudinary(config);
-//					Transformation transformation = new Transformation();
-//					transformation.width(300);
-//					transformation.height(300);
-//					transformation.crop("fit");
-//					url = cloudinary.url().transformation(transformation)
-//							.generate(id);
-//					// url = cloudinary.url()
-//					// .generate(id);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//				return null;
-//			};
-//
-//			protected void onPostExecute(Void result) {
-//				super.onPostExecute(result);
-//				if (!url.equalsIgnoreCase("") || url != null) {
-//					Picasso.with(context).load(url)
-//							.placeholder(R.drawable.ic_launcher)
-//							.error(R.drawable.not_found).into(imageView);
-//				}
-//
-//			};
-//		}.execute();
-//	}
+	private void showImages(ImageView imageView){
+//		RestraApplication.getInstance().getImageLoader().get();
+	}
+
+	private void getImages(final String id, final ImageView imageView) {
+
+		new BackgroundNetwork(context) {
+			String url = "";
+
+			protected Void doInBackground(Void... params) {
+				Map<String, String> config = new HashMap<String, String>();
+				config.put("cloud_name", Constants.CLOUDINARY_NAME);
+				config.put("api_key", Constants.CLOUDINARY_API_KEY);
+				config.put("api_secret", Constants.CLOUDINARY_API_SECRET);
+
+				try {
+					Cloudinary cloudinary = new Cloudinary(config);
+					Transformation transformation = new Transformation();
+					transformation.width(300);
+					transformation.height(300);
+					transformation.crop("fit");
+					url = cloudinary.url().transformation(transformation)
+							.generate(id);
+					// url = cloudinary.url()
+					// .generate(id);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+
+			protected void onPostExecute(Void result) {
+				super.onPostExecute(result);
+				if (!url.equalsIgnoreCase("") || url != null) {
+					Picasso.with(context).load(url)
+							.placeholder(R.drawable.ic_launcher)
+							.error(R.drawable.ic_launcher).into(imageView);
+				}
+
+			};
+		}.execute();
+	}
 
 	public static class ViewHolder {
 		TextView nameTextView;
