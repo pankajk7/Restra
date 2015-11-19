@@ -82,10 +82,8 @@ public class SearchResultBaseAdapter extends BaseAdapter {
 		holder.priceRangeTextView.setText(arrayList.get(position).getPhone());
 		holder.areaTextView.setText(arrayList.get(position).getArea());
 		holder.imageView.setImageResource(R.drawable.ic_launcher);
+		getImages(arrayList.get(position).getPrimary_image(),holder.imageView);
 
-//		if(position==0){
-			getImages("Breaking_Bad_title_card_nxixvd",holder.imageView);
-//		}
 
 		//getting only first image to show
 //		getImages(arrayList.get(position).getImages()[0].getCloudinary_image_id(), holder.imageView);
@@ -127,8 +125,8 @@ public class SearchResultBaseAdapter extends BaseAdapter {
 				super.onPostExecute(result);
 				if (!url.equalsIgnoreCase("") || url != null) {
 					Picasso.with(context).load(url)
-							.placeholder(R.drawable.ic_launcher)
-							.error(R.drawable.ic_launcher).into(imageView);
+							.placeholder(R.drawable.image_uploading)
+							.error(R.drawable.image_not_found).into(imageView);
 				}
 
 			};

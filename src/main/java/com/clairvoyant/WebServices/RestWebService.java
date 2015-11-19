@@ -73,7 +73,9 @@ public class RestWebService {
             getCall(url);
         } else if (resourceName.equalsIgnoreCase(Constants.API_GET_REVIEW)) {
             getCall(url);
-        } else{ //if resourceName doesn't match
+        } else if (resourceName.equalsIgnoreCase(Constants.API_GET_RESTAURANT_IMAGE)) {
+			getCall(url);
+		} else{ //if resourceName doesn't match
             if (transparentProgressDialog.isShowing()) {
                 transparentProgressDialog.dismiss();
             }

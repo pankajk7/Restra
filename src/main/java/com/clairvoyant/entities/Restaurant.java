@@ -28,6 +28,9 @@ public class Restaurant implements Serializable {
     String menu_id;
     String pic_id;
     String area_id;
+    String primary_image;
+
+
 
     public class RestaurantList{
         public Restaurant[] getRestaurant() {
@@ -216,4 +219,11 @@ public class Restaurant implements Serializable {
         this.area_id = area_id;
     }
 
+    public String getPrimary_image() {
+        return primary_image;
+    }
+
+    public void setPrimary_image(String primary_image) {
+        this.primary_image = primary_image;
+    }
 }

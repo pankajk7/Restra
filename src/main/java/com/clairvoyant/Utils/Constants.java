@@ -18,6 +18,9 @@ public class Constants {
     //PARAMETER
     public final static String PARAMETER_AUTH = "X-Authorization";
 
+//    PARAMETER APP
+    public final static String PARAMETER_IMAGE_ID = "image_id";
+
     // Fonts
     public final static String FONT_CIRCULAR = "fonts/Circular_Air-Book.ttf";
 

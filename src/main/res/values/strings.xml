@@ -30,4 +30,5 @@
     <!--Restauran Information-->
     <string name="restaurant_info">Restaurant Info</string>
     <string name="restaurant_location">Restaurant Location</string>
+    <string name="title_activity_image">ImageActivity</string>
 </resources>

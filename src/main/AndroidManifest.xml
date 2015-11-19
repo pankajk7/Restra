@@ -26,8 +26,14 @@
             android:name="com.clairvoyant.Activities.SearchActivity"
             android:theme="@style/MyMaterialTheme" >
         </activity>
-        <activity android:name="com.clairvoyant.Activities.RestaurantInfoActivity"
-            android:theme="@style/MyMaterialTheme">
+        <activity
+            android:name="com.clairvoyant.Activities.RestaurantInfoActivity"
+            android:theme="@style/MyMaterialTheme" >
+        </activity>
+        <activity
+            android:name="com.clairvoyant.Activities.ImageActivity"
+            android:label="@string/title_activity_image"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 
