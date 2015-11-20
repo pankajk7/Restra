@@ -27,8 +27,17 @@
     <string name="list_restaurants">Restaurants</string>
     <string name="list_restaurants_text">List all the restaurants</string>
 
-    <!--Restauran Information-->
+
+    <!--Search-->
+    <string name="search_restaurant_name">Restaurant Name</string>
+    <string name="search_restaurant_address">Address</string>
+    <string name="search_restaurant_area">Area</string>
+    <string name="search_restaurant_rates">Rates</string>
+
+    <!--Restaurant Information-->
     <string name="restaurant_info">Restaurant Info</string>
     <string name="restaurant_location">Restaurant Location</string>
     <string name="title_activity_image">ImageActivity</string>
+
+
 </resources>

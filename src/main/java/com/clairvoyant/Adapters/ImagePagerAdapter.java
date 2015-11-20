@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.clairvoyant.Utils.BackgroundNetwork;
@@ -54,12 +56,34 @@ public class ImagePagerAdapter extends PagerAdapter {
  
         ImageView imageView = (ImageView) itemView.findViewById(R.id.viewPagerItem_image1);
         TextView textView = (TextView)itemView.findViewById(R.id.viewPagerItem_textview_page);
-       
+
         getImages(arrayList.get(position).getImage_id(),imageView);
-        textView.setText(position+1 + "/" + arrayList.size());
+        textView.setText(position + 1 + "/" + arrayList.size());
+
+        RadioGroup radioGroup = (RadioGroup) itemView.findViewById(R.id.radiogroup_imageViewPager);
+
+//        for (int row = 0; row < getCount(); row++) {
+            LinearLayout ll = new LinearLayout(context);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+
+        RadioGroup.LayoutParams rprms;
+
+        RadioButton rdbtn[] = new RadioButton[getCount()];
+        for (int i = 0; i < getCount(); i++) {
+            rdbtn[i] = new RadioButton(context);
+            rdbtn[i].setId((getCount() * 2) + i);
+//                rdbtn.setEnabled(false);
+//                ll.addView(rdbtn);
+            rprms= new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+//            radioGroup.addView(ll);
+            radioGroup.addView(rdbtn[i], rprms);
+            }
+
+            rdbtn[position].setChecked(true);
+//        }
 
         container.addView(itemView);
- 
+
         return itemView;
     }
  

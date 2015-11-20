@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +37,10 @@ public class SearchActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     AutoCompleteTextView searchTextView;
-    ListView listView;
+//    ListView listView;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     ArrayList<Restaurant> restaurantArrayList;
 
@@ -59,7 +64,7 @@ public class SearchActivity extends AppCompatActivity {
         ActionBarCommon actionBarCommon = new ActionBarCommon(getSupportActionBar(), SearchActivity.this)
                 .setCustomActionBar();
         actionBarCommon.getBackButtonLayout().setVisibility(View.GONE);
-        actionBarCommon.setTitleForActionBar("");
+        actionBarCommon.setTitleForActionBar("Search Restaurant");
 
         init();
         findViews();
@@ -72,7 +77,15 @@ public class SearchActivity extends AppCompatActivity {
 
     private void findViews() {
         searchTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView_searchLayout);
-        listView = (ListView)findViewById(R.id.listview_searchLayout);
+//        listView = (ListView)findViewById(R.id.listview_searchLayout);
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView_searchLayout);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
     }
 
     private void listeners() {
@@ -91,14 +104,16 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SearchActivity.this, RestaurantInfoActivity.class);
-                intent.putExtra("obj", restaurantArrayList.get(position));
-                startActivity(intent);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(SearchActivity.this, RestaurantInfoActivity.class);
+//                intent.putExtra("obj", restaurantArrayList.get(position));
+//                startActivity(intent);
+//            }
+//        });
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -166,6 +181,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setAdapter(ArrayList<Restaurant> restaurantArrayList){
         SearchResultBaseAdapter adapter = new SearchResultBaseAdapter(SearchActivity.this, restaurantArrayList);
-        listView.setAdapter(adapter);
+//        listView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
     }
 }
