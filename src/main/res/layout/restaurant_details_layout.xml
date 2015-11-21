@@ -24,7 +24,16 @@
             android:layout_margin="5dp"
             android:layout_weight="1.5"
             android:scaleType="fitXY"
-            android:src="@drawable/image_uploading" />
+            android:src="@drawable/image_uploading"
+            android:visibility="gone"/>
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/viewPager_images"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </android.support.v4.view.ViewPager>
 
         <LinearLayout
             android:layout_width="match_parent"

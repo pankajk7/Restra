@@ -49,7 +49,15 @@ public class ImagePagerAdapter extends PagerAdapter {
     public boolean isViewFromObject(View view, Object object) {
         return view == ((LinearLayout) object);
     }
- 
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = layoutInflater.inflate(R.layout.image_viewpager_layout, container, false);

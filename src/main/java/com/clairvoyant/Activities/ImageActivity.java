@@ -45,24 +45,24 @@ public class ImageActivity extends AppCompatActivity {
 //        });
     }
 
-    private String init(){
+    private String init() {
         String id = null;
         try {
             id = (String) getIntent().getExtras().get(Constants.PARAMETER_IMAGE_ID);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return id;
     }
 
-    private void getImages(String imageId){
-        if(imageId == null){
+    private void getImages(String imageId) {
+        if (imageId == null) {
             return;
         }
-        new RestWebService(ImageActivity.this){
+        new RestWebService(ImageActivity.this) {
             @Override
             public void onSuccess(String data) {
-                Image.ImageList array = new Gson().fromJson(data,Image.ImageList.class);
+                Image.ImageList array = new Gson().fromJson(data, Image.ImageList.class);
                 Image[] arrays = array.getImage();
                 ArrayList<Image> list = new ArrayList<Image>(Arrays.asList(arrays));
                 setAdapter(list);

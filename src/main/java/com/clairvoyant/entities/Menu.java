@@ -2,9 +2,6 @@ package com.clairvoyant.entities;
 
 import java.io.Serializable;
 
-/**
- * Created by Clairvoyant on 27-10-2015.
- */
 public class Menu implements Serializable {
     String id;
     String restro_id;

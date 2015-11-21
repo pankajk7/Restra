@@ -115,7 +115,7 @@ public class SearchResultBaseAdapter extends RecyclerView.Adapter<SearchResultBa
 		// - replace the contents of the view with that element
 		holder.nameTextView.setText(arrayList.get(position).getName());
 		holder.addressTextView.setText(arrayList.get(position).getAddress());
-		holder.priceRangeTextView.setText(arrayList.get(position).getPhone());
+		holder.priceRangeTextView.setText(arrayList.get(position).getCost());
 		holder.areaTextView.setText(arrayList.get(position).getArea());
 		holder.imageView.setImageResource(R.drawable.ic_launcher);
 		getImages(arrayList.get(position).getPrimary_image(), holder.imageView);

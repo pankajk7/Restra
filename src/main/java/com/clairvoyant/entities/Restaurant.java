@@ -2,9 +2,6 @@ package com.clairvoyant.entities;
 
 import java.io.Serializable;
 
-/**
- * Created by Clairvoyant on 27-10-2015.
- */
 public class Restaurant implements Serializable {
     String id;
     String name;
@@ -23,11 +20,6 @@ public class Restaurant implements Serializable {
     String close_hour;
     String cost;
     String payment_methods;
-    String tag_id;
-    String review_id;
-    String menu_id;
-    String pic_id;
-    String area_id;
     String primary_image;
 
 
@@ -177,46 +169,6 @@ public class Restaurant implements Serializable {
 
     public void setPayment_methods(String payment_methods) {
         this.payment_methods = payment_methods;
-    }
-
-    public String getTag_id() {
-        return tag_id;
-    }
-
-    public void setTag_id(String tag_id) {
-        this.tag_id = tag_id;
-    }
-
-    public String getReview_id() {
-        return review_id;
-    }
-
-    public void setReview_id(String review_id) {
-        this.review_id = review_id;
-    }
-
-    public String getMenu_id() {
-        return menu_id;
-    }
-
-    public void setMenu_id(String menu_id) {
-        this.menu_id = menu_id;
-    }
-
-    public String getPic_id() {
-        return pic_id;
-    }
-
-    public void setPic_id(String pic_id) {
-        this.pic_id = pic_id;
-    }
-
-    public String getArea_id() {
-        return area_id;
-    }
-
-    public void setArea_id(String pic_id) {
-        this.area_id = area_id;
     }
 
     public String getPrimary_image() {

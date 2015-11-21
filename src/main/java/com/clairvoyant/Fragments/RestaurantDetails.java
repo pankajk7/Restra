@@ -3,20 +3,27 @@ package com.clairvoyant.Fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.clairvoyant.Activities.ImageActivity;
+import com.clairvoyant.Adapters.ImagePagerAdapter;
 import com.clairvoyant.Utils.BackgroundNetwork;
 import com.clairvoyant.Utils.Constants;
+import com.clairvoyant.WebServices.RestWebService;
+import com.clairvoyant.entities.Image;
 import com.clairvoyant.entities.Restaurant;
 import com.clairvoyant.restra.R;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +32,9 @@ public class RestaurantDetails {
 
     ImageView imageView;
 
+    ViewPager viewPager;
 
+    ImagePagerAdapter viewPagerAdapter;
     Restaurant objRestaurant;
     Activity activity;
 
@@ -34,8 +43,9 @@ public class RestaurantDetails {
         this.activity = activity;
         init();
         findView(rootView);
-        getImages(objRestaurant.getPrimary_image(), imageView);
+//        getImages(objRestaurant.getPrimary_image(), imageView);
         listeners();
+        getImages(objRestaurant.getId());
         return rootView;
     }
 
@@ -49,21 +59,43 @@ public class RestaurantDetails {
     private void findView(View rootView) {
         imageView = (ImageView) rootView
                 .findViewById(R.id.imageView_restraImage);
-
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager_images);
     }
 
     public void listeners(){
-        imageView.setOnClickListener(new View.OnClickListener() {
+        /*imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ImageActivity.class);
                 intent.putExtra(Constants.PARAMETER_IMAGE_ID, objRestaurant.getPic_id());
                 activity.startActivity(intent);
             }
-        });
+        });*/
     }
 
-    private void getImages(final String id, final ImageView imageView) {
+    private void getImages(String imageId) {
+        if (imageId == null) {
+            return;
+        }
+        new RestWebService(activity) {
+            @Override
+            public void onSuccess(String data) {
+                Image.ImageList array = new Gson().fromJson(data, Image.ImageList.class);
+                Image[] arrays = array.getImage();
+                ArrayList<Image> list = new ArrayList<Image>(Arrays.asList(arrays));
+                setAdapter(list);
+            }
+        }.serviceCall(Constants.API_GET_RESTAURANT_IMAGE, imageId, true);
+    }
+
+    private void setAdapter(ArrayList<Image> list) {
+        viewPagerAdapter = new ImagePagerAdapter(activity, list);
+        viewPager.setAdapter(viewPagerAdapter);
+
+    }
+
+    /*private void getImages(final String id, final ImageView imageView) {
+
 
         new BackgroundNetwork(activity) {
             String url = "";
@@ -97,5 +129,5 @@ public class RestaurantDetails {
 
             };
         }.execute();
-    }
+    }*/
 }
