@@ -25,26 +25,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ImagePagerAdapter extends PagerAdapter {
- 
+
     Context context;
     LayoutInflater layoutInflater;
 
     ArrayList<Image> arrayList;
- 
+
     public ImagePagerAdapter(Context context, ArrayList<Image> arrayList) {
         this.context = context;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.arrayList = arrayList;
     }
- 
+
     @Override
     public int getCount() {
-        if(arrayList != null){
+        if (arrayList != null) {
             return arrayList.size();
         }
         return 0;
     }
- 
+
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == ((LinearLayout) object);
@@ -61,40 +61,16 @@ public class ImagePagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = layoutInflater.inflate(R.layout.image_viewpager_layout, container, false);
- 
+
         ImageView imageView = (ImageView) itemView.findViewById(R.id.viewPagerItem_image1);
-        TextView textView = (TextView)itemView.findViewById(R.id.viewPagerItem_textview_page);
 
-        getImages(arrayList.get(position).getImage_id(),imageView);
-        textView.setText(position + 1 + "/" + arrayList.size());
-
-        RadioGroup radioGroup = (RadioGroup) itemView.findViewById(R.id.radiogroup_imageViewPager);
-
-//        for (int row = 0; row < getCount(); row++) {
-            LinearLayout ll = new LinearLayout(context);
-            ll.setOrientation(LinearLayout.HORIZONTAL);
-
-        RadioGroup.LayoutParams rprms;
-
-        RadioButton rdbtn[] = new RadioButton[getCount()];
-        for (int i = 0; i < getCount(); i++) {
-            rdbtn[i] = new RadioButton(context);
-            rdbtn[i].setId((getCount() * 2) + i);
-//                rdbtn.setEnabled(false);
-//                ll.addView(rdbtn);
-            rprms= new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
-//            radioGroup.addView(ll);
-            radioGroup.addView(rdbtn[i], rprms);
-            }
-
-            rdbtn[position].setChecked(true);
-//        }
+        getImages(arrayList.get(position).getImage_id(), imageView);
 
         container.addView(itemView);
 
         return itemView;
     }
- 
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((LinearLayout) object);
@@ -124,7 +100,9 @@ public class ImagePagerAdapter extends PagerAdapter {
                     e.printStackTrace();
                 }
                 return null;
-            };
+            }
+
+            ;
 
             protected void onPostExecute(Void result) {
                 super.onPostExecute(result);
@@ -134,7 +112,9 @@ public class ImagePagerAdapter extends PagerAdapter {
                             .error(R.drawable.image_not_found).into(imageView);
                 }
 
-            };
+            }
+
+            ;
         }.execute();
     }
 }

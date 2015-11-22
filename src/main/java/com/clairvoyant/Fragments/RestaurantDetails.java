@@ -1,38 +1,42 @@
 package com.clairvoyant.Fragments;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
-import com.android.volley.toolbox.NetworkImageView;
-import com.clairvoyant.Activities.ImageActivity;
 import com.clairvoyant.Adapters.ImagePagerAdapter;
-import com.clairvoyant.Utils.BackgroundNetwork;
+import com.clairvoyant.Components.VerticalScrollView;
 import com.clairvoyant.Utils.Constants;
 import com.clairvoyant.WebServices.RestWebService;
 import com.clairvoyant.entities.Image;
 import com.clairvoyant.entities.Restaurant;
+import com.clairvoyant.entities.Tag;
 import com.clairvoyant.restra.R;
-import com.cloudinary.Cloudinary;
-import com.cloudinary.Transformation;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class RestaurantDetails {
 
     ImageView imageView;
 
+    TextView addressTextView, areaTextView, costTextView, cuisineTextView;
+
+    LinearLayout tagsLinearLayout;
+
     ViewPager viewPager;
+    CirclePageIndicator circlePageIndicator;
+    VerticalScrollView scrollView;
 
     ImagePagerAdapter viewPagerAdapter;
     Restaurant objRestaurant;
@@ -43,34 +47,45 @@ public class RestaurantDetails {
         this.activity = activity;
         init();
         findView(rootView);
-//        getImages(objRestaurant.getPrimary_image(), imageView);
         listeners();
+        setValues();
         getImages(objRestaurant.getId());
+        getTags(objRestaurant.getId());
         return rootView;
     }
 
 
     private void init() {
-        if(objRestaurant != null){
-            Toast.makeText(activity, "Object", Toast.LENGTH_LONG).show();
-        }
+
     }
 
     private void findView(View rootView) {
+
+        scrollView = (VerticalScrollView)rootView.findViewById(R.id.scrollView_restraDetails);
+
         imageView = (ImageView) rootView
                 .findViewById(R.id.imageView_restraImage);
+
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager_images);
+        circlePageIndicator = (CirclePageIndicator)rootView.findViewById(R.id.circlePageIndicator);
+        addressTextView = (TextView) rootView.findViewById(R.id.textview_restraDetails_address);
+        areaTextView = (TextView) rootView.findViewById(R.id.textview_restraDetails_area);
+        costTextView = (TextView) rootView.findViewById(R.id.textview_restraDetails_cost);
+        cuisineTextView = (TextView) rootView.findViewById(R.id.textview_restraDetails_cuisines);
+        tagsLinearLayout = (LinearLayout)rootView.findViewById(R.id.layout_restraDetails_tags);
     }
 
     public void listeners(){
-        /*imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, ImageActivity.class);
-                intent.putExtra(Constants.PARAMETER_IMAGE_ID, objRestaurant.getPic_id());
-                activity.startActivity(intent);
-            }
-        });*/
+
+    }
+
+    private void setValues(){
+        if(objRestaurant != null){
+            addressTextView.setText(objRestaurant.getAddress());
+            areaTextView.setText(objRestaurant.getArea());
+            costTextView.setText(objRestaurant.getCost());
+            cuisineTextView.setText(objRestaurant.getCuisines());
+        }
     }
 
     private void getImages(String imageId) {
@@ -91,43 +106,39 @@ public class RestaurantDetails {
     private void setAdapter(ArrayList<Image> list) {
         viewPagerAdapter = new ImagePagerAdapter(activity, list);
         viewPager.setAdapter(viewPagerAdapter);
-
+        circlePageIndicator.setViewPager(viewPager);
     }
 
-    /*private void getImages(final String id, final ImageView imageView) {
+    private void getTags(String tagId) {
+        if (tagId == null) {
+            return;
+        }
+        new RestWebService(activity) {
+            @Override
+            public void onSuccess(String data) {
+                /*Tag.TagList array = new Gson().fromJson(data, Tag.TagList.class);
+                Tag[] arrays = array.getTag();
+                ArrayList<Tag> list = new ArrayList<Tag>(Arrays.asList(arrays));
+                addTags(list);*/
+                Log.d("Tag====>",data);
 
+            }
+        }.serviceCall(Constants.API_GET_TAG, tagId, false);
+    }
 
-        new BackgroundNetwork(activity) {
-            String url = "";
-
-            protected Void doInBackground(Void... params) {
-                Map<String, String> config = new HashMap<String, String>();
-                config.put("cloud_name", Constants.CLOUDINARY_NAME);
-                config.put("api_key", Constants.CLOUDINARY_API_KEY);
-                config.put("api_secret", Constants.CLOUDINARY_API_SECRET);
-
-                try {
-                    Cloudinary cloudinary = new Cloudinary(config);
-                    Transformation transformation = new Transformation();
-                    transformation.width(300);
-                    transformation.height(300);
-                    transformation.crop("fit");
-                    url = cloudinary.url().transformation(transformation).generate(id);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-
-            protected void onPostExecute(Void result) {
-                super.onPostExecute(result);
-                if (!url.equalsIgnoreCase("") || url != null) {
-                    Picasso.with(activity).load(url)
-                            .placeholder(R.drawable.image_uploading)
-                            .error(R.drawable.image_not_found).into(imageView);
-                }
-
-            };
-        }.execute();
-    }*/
+    private void addTags(ArrayList<Tag> list){
+        if(list != null){
+            /*LinearLayout layout = new LinearLayout(activity);
+            layout.setOrientation(LinearLayout.VERTICAL);*/
+            TextView textView[] = new TextView[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                Tag obj = list.get(i);
+                textView[i] = new TextView(activity);
+                LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                textView[i].setText("Get Bar" + obj.getBar() + "-" +list.size());
+                textView[i].setLayoutParams(llp);
+                tagsLinearLayout.addView(textView[i],i);
+            }
+        }
+    }
 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.clairvoyant.Components.SlidingTabLayout;
 import com.clairvoyant.Fragments.RestaurantDetails;
+import com.clairvoyant.Fragments.RestaurantLocation;
 import com.clairvoyant.Utils.ActionBarCommon;
 import com.clairvoyant.entities.Restaurant;
 import com.clairvoyant.restra.R;
@@ -62,9 +63,6 @@ public class RestaurantInfoActivity extends AppCompatActivity {
             Intent intent = getIntent();
             objRestaurant = (Restaurant) intent
                     .getSerializableExtra("obj");
-            if(objRestaurant != null){
-                Toast.makeText(RestaurantInfoActivity.this, "Object", Toast.LENGTH_LONG).show();
-            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -169,8 +167,8 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                         objRestaurant, RestaurantInfoActivity.this);
             } else {
                 view = getLayoutInflater().inflate(
-                        R.layout.restaurant_details_layout, container, false);
-                view = new RestaurantDetails().getFragmentView(view,
+                        R.layout.location_layout, container, false);
+                view = new RestaurantLocation().getFragmentView(view,
                         objRestaurant, RestaurantInfoActivity.this);
             }
             container.addView(view);

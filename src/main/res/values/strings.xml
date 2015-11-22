@@ -38,6 +38,9 @@
     <string name="restaurant_info">Restaurant Info</string>
     <string name="restaurant_location">Restaurant Location</string>
     <string name="title_activity_image">ImageActivity</string>
-
+    <string name="restaurnat_cost">Cost</string>
+    <string name="restaurnat_menu">Menu</string>
+    <string name="restaurnat_cuisine">Cuisines</string>
+    <string name="restaurnat_tag">Tags</string>
 
 </resources>

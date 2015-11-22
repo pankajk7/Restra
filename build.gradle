@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    flatDir {
+        dirs 'libs'}
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "21.1.2"
@@ -26,5 +31,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:cardview-v7:21.0.+'
+    compile 'com.android.support:cardview-v7:23.1.1+'
+    compile 'com.google.android.gms:play-services-maps:7.0.0'
+    compile(name:'library-2.4.1', ext:'aar')
 }
