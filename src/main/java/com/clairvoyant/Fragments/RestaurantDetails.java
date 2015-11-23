@@ -1,8 +1,11 @@
 package com.clairvoyant.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +23,10 @@ import com.clairvoyant.entities.Restaurant;
 import com.clairvoyant.entities.Tag;
 import com.clairvoyant.restra.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.viewpagerindicator.CirclePageIndicator;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,28 +122,45 @@ public class RestaurantDetails {
         new RestWebService(activity) {
             @Override
             public void onSuccess(String data) {
-                /*Tag.TagList array = new Gson().fromJson(data, Tag.TagList.class);
-                Tag[] arrays = array.getTag();
-                ArrayList<Tag> list = new ArrayList<Tag>(Arrays.asList(arrays));
-                addTags(list);*/
-                Log.d("Tag====>",data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+//                    Tag.TagList array = new Gson().fromJson(data, Tag.TagList.class);
+                    JSONObject tagObject = jsonObject.getJSONObject("tag");
+                    Tag array = new Gson().fromJson(tagObject.toString(), Tag.class);
+//                    Tag[] arrays = array.getTag();
+//                    ArrayList<Tag> list = new ArrayList<Tag>(Arrays.asList(array));
+                    addTags(array);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 
             }
         }.serviceCall(Constants.API_GET_TAG, tagId, false);
     }
 
-    private void addTags(ArrayList<Tag> list){
+    private void addTags(Tag list){
         if(list != null){
             /*LinearLayout layout = new LinearLayout(activity);
             layout.setOrientation(LinearLayout.VERTICAL);*/
-            TextView textView[] = new TextView[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                Tag obj = list.get(i);
-                textView[i] = new TextView(activity);
-                LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                textView[i].setText("Get Bar" + obj.getBar() + "-" +list.size());
-                textView[i].setLayoutParams(llp);
-                tagsLinearLayout.addView(textView[i],i);
+
+//            TextView textView[] = new TextView[list.getTags().length];
+//            ImageView imageView[] = new ImageView[list.getTags().length];
+            for (int i = 0; i < list.getTags().length; i++) {
+                LayoutInflater inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.nav_drawer_row, null, false);
+                Tag.Tags obj = list.getTags()[i];
+                TextView textView = (TextView)view.findViewById(R.id.textview_drawer_text);
+                ImageView imageView =  (ImageView)view.findViewById(R.id.imageview_drawer);
+//                textView[i].setTextColor(ContextCompat.getColor(activity, R.color.black));
+//                LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                if(obj.getValue() == 1) {
+                    textView.setText(obj.getName() + " ");
+                    imageView.setImageResource(R.drawable.ic_check_green);
+                }else{
+                    textView.setText(obj.getName() + " ");
+                    imageView.setImageResource(R.drawable.ic_cross_red);
+                }
+                tagsLinearLayout.addView(view);
             }
         }
     }

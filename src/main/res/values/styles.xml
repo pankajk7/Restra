@@ -69,7 +69,7 @@
     <style name="cardview" parent="AppTheme">
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:layout_marginBottom">5dp</item>
     </style>
 

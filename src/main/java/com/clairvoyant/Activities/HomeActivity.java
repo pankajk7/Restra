@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity  implements
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         ActionBarCommon actionBarCommon = new ActionBarCommon(getSupportActionBar(), this)
                 .setCustomActionBar();
@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity  implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+//        getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
@@ -105,6 +105,8 @@ public class HomeActivity extends AppCompatActivity  implements
         switch (position) {
 
             case 0:
+                intent = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(intent);
 //                intent = new Intent(DashboardActivity.this,
 //                        AppLoginActivity.class);
 //                intent.putExtra(Constants.INTENT_PARAM_IS_SIGNUP, true);

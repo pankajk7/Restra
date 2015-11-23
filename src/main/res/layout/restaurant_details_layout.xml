@@ -155,6 +155,7 @@
                             android:id="@+id/layout_restraDetails_tags"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
                             android:orientation="vertical">
 
                         </LinearLayout>

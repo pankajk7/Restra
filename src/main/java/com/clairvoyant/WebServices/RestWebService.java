@@ -3,6 +3,7 @@ package com.clairvoyant.WebServices;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -99,6 +100,10 @@ public class RestWebService {
 			public void onErrorResponse(VolleyError error) {
 				onComplete();
 				Log.d("Error", error.toString());
+				if(error.getMessage().contains("java.net.UnknownHostException")){
+					Toast.makeText(context, context.getResources().getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
+					return;
+				}
 				onError(error);
 			}
 		}) {

@@ -155,9 +155,9 @@ public class SearchActivity extends AppCompatActivity {
 //                com.clairvoyant.entities.Menu.MenuList array = new Gson().fromJson(data, com.clairvoyant.entities.Menu.MenuList.class);
                 if (array != null) {
                     restaurantArrayList = new ArrayList<Restaurant>(Arrays.asList(restaurants));
-                    restaurantArrayList.add(restaurantArrayList.get(0));
-                    restaurantArrayList.add(restaurantArrayList.get(0));
-                    restaurantArrayList.add(restaurantArrayList.get(0));
+//                    restaurantArrayList.add(restaurantArrayList.get(0));
+//                    restaurantArrayList.add(restaurantArrayList.get(0));
+//                    restaurantArrayList.add(restaurantArrayList.get(0));
                     setAdapter(restaurantArrayList);
 //                    Toast.makeText(HomeActivity.this, array.getMenu()[0].getPic_id(), Toast.LENGTH_LONG).show();
                 }
@@ -173,6 +173,8 @@ public class SearchActivity extends AppCompatActivity {
                                 break;
                             }
                         }
+                    } else if(error.getMessage().contains("java.net.UnknownHostException")){
+                        Toast.makeText(SearchActivity.this, "Network Error Occur", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

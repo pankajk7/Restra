@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true">
+    android:clickable="true"
+    android:gravity="center_vertical">
 
-    <TextView
-        style="@style/textview_drawer_footer"
-        android:id="@+id/title"
+    <ImageView
+        android:id="@+id/imageview_drawer"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_weight="0" />
+
+    <com.clairvoyant.Components.TextViewRegular
+        android:id="@+id/textview_drawer_text"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:drawablePadding="5dp"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
-</RelativeLayout>
+</LinearLayout>

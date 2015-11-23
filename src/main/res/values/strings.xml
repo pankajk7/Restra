@@ -13,12 +13,10 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="search">Search</string>
-    <string name="list_property">List Property</string>
-    <string name="manage_property">Manage Property</string>
 
     <string-array name="nav_drawer_labels">
-        <item>@string/list_property</item>
-        <item>@string/manage_property</item>
+        <item>@string/search_dashboard_fragment</item>
+        <item>@string/list_restaurants</item>
     </string-array>
 
     <!-- dashboard fragment -->
@@ -43,4 +41,6 @@
     <string name="restaurnat_cuisine">Cuisines</string>
     <string name="restaurnat_tag">Tags</string>
 
+    <!--warning erro messages-->
+    <string name="error_network_connection">No internet or some network problem occur.</string>
 </resources>
