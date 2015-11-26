@@ -20,6 +20,10 @@ public class Constants {
 
 //    PARAMETER APP
     public final static String PARAMETER_IMAGE_ID = "image_id";
+    public final static String PARAMETER_AREA_FILE = "areas";
+
+    //PARAMETER INTENT
+    public final static String PARAMETER_SEARCH_IS_LIST_ALL = "isListAll";
 
     // Fonts
     public final static String FONT_CIRCULAR = "fonts/Circular_Air-Book.ttf";
@@ -41,5 +45,5 @@ public class Constants {
     public final static String API_GET_REVIEW = "review/";   //review/:id (id is restaurant id)
     public final static String API_GET_RESTAURANT_IMAGE = "image/";   //get restaurant image
     public final static String API_GET_MENU_IMAGE = "menu_image/";  //menu_image/:id (id is restaurant id)
-
+    public final static String API_GET_AREA = "area";
 }

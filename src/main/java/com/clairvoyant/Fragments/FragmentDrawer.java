@@ -26,9 +26,6 @@ import com.clairvoyant.restra.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentDrawer extends Fragment {
 //    TextView shareTextView;
     private RecyclerView recyclerView;
@@ -40,7 +37,7 @@ public class FragmentDrawer extends Fragment {
     private FragmentDrawerListener drawerListener;
     ActionBar actionBar;
 
-    public TextView searchTextView;
+    public TextView hiddenSearchTextView;
 
     public FragmentDrawer() {
     }
@@ -104,14 +101,14 @@ public class FragmentDrawer extends Fragment {
     }
 
     private void findView(View layout) {
-        searchTextView = (TextView) layout
+        hiddenSearchTextView = (TextView) layout
                 .findViewById(R.id.textview_dashboardDrawer_search);
 //        shareTextView = (TextView)layout
 //                .findViewById(R.id.textview_drawer_share);
     }
 
     private void listeners() {
-        searchTextView.setOnClickListener(new View.OnClickListener() {
+        hiddenSearchTextView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

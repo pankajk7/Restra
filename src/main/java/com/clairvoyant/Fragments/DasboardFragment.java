@@ -83,6 +83,16 @@ public class DasboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra(Constants.PARAMETER_SEARCH_IS_LIST_ALL, false);
+                startActivity(intent);
+            }
+        });
+
+        listLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra(Constants.PARAMETER_SEARCH_IS_LIST_ALL, true);
                 startActivity(intent);
             }
         });

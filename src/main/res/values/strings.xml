@@ -43,4 +43,5 @@
 
     <!--warning erro messages-->
     <string name="error_network_connection">No internet or some network problem occur.</string>
+    <string name="error_webservice_response_message">message</string>
 </resources>

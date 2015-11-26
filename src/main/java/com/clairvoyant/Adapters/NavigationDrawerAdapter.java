@@ -43,11 +43,11 @@ public class NavigationDrawerAdapter extends
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
         if (position == 0) {
-            holder.imageView.setImageResource(R.drawable.ic_list_black_48dp);
+            holder.imageView.setImageResource(R.drawable.ic_search_black_48dp);
 //            holder.title.setCompoundDrawablesWithIntrinsicBounds(
 //                    R.drawable.ic_list_black_48dp, 0, 0, 0);
         } else if (position == 1) {
-            holder.imageView.setImageResource(R.drawable.ic_search_black_48dp);
+            holder.imageView.setImageResource(R.drawable.ic_list_black_48dp);
 //            holder.title.setCompoundDrawablesWithIntrinsicBounds(
 //                    R.drawable.ic_search_black_48dp, 0, 0, 0);
         }

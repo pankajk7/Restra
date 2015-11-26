@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity  implements
                 getSupportActionBar());
         drawerFragment.setDrawerListener(this);
 
-        drawerFragment.searchTextView.performClick();
+        drawerFragment.hiddenSearchTextView.performClick();
         // display the first navigation drawer view on app launch
 //		displayView(0);
     }
