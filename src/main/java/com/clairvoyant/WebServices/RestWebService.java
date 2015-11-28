@@ -72,6 +72,8 @@ public class RestWebService {
             getCall(url);
         } else if (resourceName.equalsIgnoreCase(Constants.API_GET_SINGLE_RESTAURANT)) {
             getCall(url);
+        } else if (resourceName.equalsIgnoreCase(Constants.API_GET_RESTAURANT_BY_AREA_ID)) {
+            getCall(url);
         } else if (resourceName.equalsIgnoreCase(Constants.API_GET_MENU)) {
             getCall(url);
         } else if (resourceName.equalsIgnoreCase(Constants.API_GET_TAG)) {
@@ -91,7 +93,7 @@ public class RestWebService {
     }
 
     private void getCall(String url) {
-        Log.d("URL=====>", url);
+//        Log.d("URL=====>", url);
         StringRequest req = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 
             @Override
@@ -116,9 +118,11 @@ public class RestWebService {
             public void onErrorResponse(VolleyError error) {
                 onComplete();
                 Log.d("Error", error.toString());
-                if (error.getMessage().contains("java.net.UnknownHostException")) {
-                    Toast.makeText(context, context.getResources().getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
-                    return;
+                if(error.getMessage() != null) {
+                    if (error.getMessage().contains("java.net.UnknownHostException")) {
+                        Toast.makeText(context, context.getResources().getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 onError(error);
             }

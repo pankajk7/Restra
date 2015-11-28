@@ -89,11 +89,12 @@ public class ImagePagerAdapter extends PagerAdapter {
 
                 try {
                     Cloudinary cloudinary = new Cloudinary(config);
-//                    Transformation transformation = new Transformation();
-//                    transformation.width(300);
-//                    transformation.height(300);
-//                    transformation.crop("fit");
-                    url = cloudinary.url().generate(id);
+                    Transformation transformation = new Transformation();
+                    transformation.width(300);
+                    transformation.height(300);
+                    transformation.crop("fit");
+                    url = cloudinary.url().transformation(transformation)
+                            .generate(id);
                     // url = cloudinary.url()
                     // .generate(id);
                 } catch (Exception e) {
@@ -110,6 +111,8 @@ public class ImagePagerAdapter extends PagerAdapter {
                     Picasso.with(context).load(url)
                             .placeholder(R.drawable.image_uploading)
                             .error(R.drawable.image_not_found).into(imageView);
+                } else{
+                    imageView.setImageResource(R.drawable.image_not_found);
                 }
 
             }

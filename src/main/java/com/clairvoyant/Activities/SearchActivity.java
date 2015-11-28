@@ -229,7 +229,7 @@ public class SearchActivity extends AppCompatActivity {
         if(areaId.equalsIgnoreCase("")){
             resourceName = Constants.API_GET_RESTAURANT;
         }else{
-            resourceName = Constants.API_GET_SINGLE_RESTAURANT;
+            resourceName = Constants.API_GET_RESTAURANT_BY_AREA_ID;
         }
         new RestWebService(SearchActivity.this) {
             @Override

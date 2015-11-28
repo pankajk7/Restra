@@ -94,8 +94,8 @@ public class RestaurantDetails {
         }
     }
 
-    private void getImages(String imageId) {
-        if (imageId == null) {
+    private void getImages(String restraId) {
+        if (restraId == null) {
             return;
         }
         new RestWebService(activity) {
@@ -106,7 +106,7 @@ public class RestaurantDetails {
                 ArrayList<Image> list = new ArrayList<Image>(Arrays.asList(arrays));
                 setAdapter(list);
             }
-        }.serviceCall(Constants.API_GET_RESTAURANT_IMAGE, imageId, true);
+        }.serviceCall(Constants.API_GET_RESTAURANT_IMAGE, restraId, true);
     }
 
     private void setAdapter(ArrayList<Image> list) {

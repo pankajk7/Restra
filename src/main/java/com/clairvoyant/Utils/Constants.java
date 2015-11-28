@@ -40,6 +40,7 @@ public class Constants {
     //API
     public final static String API_GET_RESTAURANT = "restaurant";
     public final static String API_GET_SINGLE_RESTAURANT = "restaurant/";  //restaurant/:id (id is restaurant id)
+    public final static String API_GET_RESTAURANT_BY_AREA_ID = "restaurant/area/";  //restaurant/area/:id (id is area id)
     public final static String API_GET_MENU = "menu/";  //menu/:id (id is restaurant id)
     public final static String API_GET_TAG = "tag/";    //tag/:id (id is restaurant id)
     public final static String API_GET_REVIEW = "review/";   //review/:id (id is restaurant id)
